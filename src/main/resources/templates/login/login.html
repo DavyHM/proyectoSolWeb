@@ -16,9 +16,10 @@
                 Iniciar Sesión
             </div>
             <div class="card-body form-FlashFood">
+                <p th:if="${param.error}" class="mb-3">Credenciales incorrectas. Inténtalo de nuevo.</p>
                 <form method="post" id="formulario-inicio" th:action="@{/autenticar}">
 
-                    <input class="form-control mb-3" id="username" type="text" placeholder="Correo" required name="username" />
+                    <input class="form-control mb-3" id="username" type="text" placeholder="Usuario" required name="username" />
                     <div id="mensaje-error-correo" class="form-group"></div>
                     <input class="form-control mb-3" id="password" type="password" placeholder="Contraseña" required name="password" />
                     <div id="mensaje-error-password" class="form-group"></div>

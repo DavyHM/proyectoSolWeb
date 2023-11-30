@@ -27,19 +27,19 @@ public class SpringSecurityConf {
     auth.userDetailsService(userService).passwordEncoder(encriptarPassword());
   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/inicio/","/css/**","/js/**","/img/**","/","/vendor/**","/realizarpedido/**","/productos/obtenerproductoporcategoria/**").permitAll();
-                    auth.anyRequest().authenticated();
-                })
-                .csrf(csrf -> csrf.disable())
-                .formLogin(login -> login.loginPage("/autenticar").defaultSuccessUrl("/inicio/panel").permitAll())
-                .logout(logout -> logout.permitAll());
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
+      httpSecurity
+              .authorizeHttpRequests(auth -> {
+                  auth.requestMatchers("/inicio/","/css/**","/js/**","/img/**","/","/vendor/**","/realizarpedido/**","/productos/obtenerproductoporcategoria/**").permitAll();
+                  auth.anyRequest().authenticated();
+              })
+              .csrf(csrf -> csrf.disable())
+              .formLogin(login -> login.loginPage("/autenticar").defaultSuccessUrl("/inicio/panel").permitAll())
+              .logout(logout -> logout.permitAll());
 
 
-        return httpSecurity.build();
-    }
+      return httpSecurity.build();
+  }
     
 }
