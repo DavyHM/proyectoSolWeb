@@ -146,8 +146,12 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- DATOS -->
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     <span sec:authentication="name"></span>
+                                    <span sec:authorize="hasRole('ROLE_ADMIN')"> - Administrador</span>
+                                    <span sec:authorize="hasRole('ROLE_USER')"> - Usuario</span>
+                                    
                                 </span>
                                 <img class="img-profile rounded-circle"
                                     th:src="@{/img/undraw_profile.svg}">
@@ -168,7 +172,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div> -->
-                                <a class="dropdown-item" th:href="@{/logout}" >
+                                <a class="dropdown-item" th:href="@{/logout?}" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

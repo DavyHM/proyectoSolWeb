@@ -11,7 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,10 +31,13 @@ public class Usuario implements Serializable{
     private String password;
 
     @Column(name = "enabled")
-    private Integer enabled;
+    private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idusuario")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "usuarios_roles", 
+        joinColumns = @JoinColumn(name="usuario_id"),
+        inverseJoinColumns = @JoinColumn(name="rol_id")
+    )
     private List<Rol> roles;
 
     public Long getId() {
@@ -60,11 +64,11 @@ public class Usuario implements Serializable{
         this.password = password;
     }
 
-    public Integer getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Integer enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -76,5 +80,23 @@ public class Usuario implements Serializable{
         this.roles = roles;
     }
 
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String username, String password, Boolean enabled, List<Rol> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
+
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    
+    
     
 }

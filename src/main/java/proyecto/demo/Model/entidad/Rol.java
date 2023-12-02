@@ -37,5 +37,14 @@ public class Rol implements Serializable{
         this.authority = authority;
     }
 
+    public Rol() {
+    }
+
+    public Rol(Long id, String authority) {
+        this.id = id;
+        this.authority = authority;
+    }
+
+    
     
 }

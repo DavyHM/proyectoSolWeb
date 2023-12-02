@@ -87,8 +87,10 @@
 
                 <!--Login y Register-->
                 <div class="log-Reg">
-                    <a th:href="@{/autenticar}"><i class="fa-solid fa-user"></i>   Login</a>
-                    <a id="btn-register" href="">Register</a>
+
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/autenticar}"><i class="fa-solid fa-user"></i>Login</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"> Logout</i></a>
+                    <a id="btn-register" th:href="@{/registrar}">Register</a>
                 </div>
             </div>
             <div class="check-responsive">
